@@ -45,7 +45,7 @@ export default function CompressPDFPage() {
       const compressedBytes = await compressPDF(file, quality)
       
       setProgress(80)
-      const blob = new Blob([compressedBytes], { type: 'application/pdf' })
+      const blob = new Blob([new Uint8Array(compressedBytes)], { type: 'application/pdf' })
       
       setProgress(100)
       setResult({

@@ -72,7 +72,7 @@ export default function MergePDFPage() {
       const mergedPdfBytes = await mergePDFs(pdfFiles)
       
       setProgress(80)
-      const blob = new Blob([mergedPdfBytes], { type: 'application/pdf' })
+      const blob = new Blob([new Uint8Array(mergedPdfBytes)], { type: 'application/pdf' })
       
       setProgress(100)
       setResult(blob)
