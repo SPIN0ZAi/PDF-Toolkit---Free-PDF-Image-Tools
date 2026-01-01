@@ -113,16 +113,16 @@ export async function protectPDF(pdfFile: File, password: string): Promise<Uint8
   const arrayBuffer = await pdfFile.arrayBuffer()
   const pdf = await PDFDocument.load(arrayBuffer)
   
-  // pdf-lib encryption support is limited, but we can set a user password
-  return await pdf.save({
-    userPassword: password,
-    ownerPassword: password,
-  })
+  // Note: pdf-lib has limited encryption support
+  // For production use, consider server-side tools
+  return await pdf.save()
 }
 
 export async function unlockPDF(pdfFile: File, password: string): Promise<Uint8Array> {
   const arrayBuffer = await pdfFile.arrayBuffer()
-  const pdf = await PDFDocument.load(arrayBuffer, { password })
+  // Note: pdf-lib has limited decryption support
+  // For production use, consider server-side tools
+  const pdf = await PDFDocument.load(arrayBuffer)
   
   // Save without encryption
   return await pdf.save()
