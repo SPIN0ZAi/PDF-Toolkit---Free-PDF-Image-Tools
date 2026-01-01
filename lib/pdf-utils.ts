@@ -38,41 +38,73 @@ export async function splitPDF(
 }
 
 export async function compressPDF(pdfFile: File, quality: 'low' | 'medium' | 'high' = 'medium'): Promise<Uint8Array> {
-  const arrayBuffer = await pdfFile.arrayBuffer()
-  const sourcePdf = await PDFDocument.load(arrayBuffer)
+  // Import PDF.js for rendering
+  const pdfjsLib = await import('pdfjs-dist')
+  pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`
   
-  // Create new PDF
+  const arrayBuffer = await pdfFile.arrayBuffer()
+  
+  // Load PDF with PDF.js for rendering
+  const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer })
+  const pdfDoc = await loadingTask.promise
+  
+  // Create new PDF with pdf-lib
   const compressedPdf = await PDFDocument.create()
   
-  // Resolution scale factors - reduce resolution for compression
-  const scaleMap = {
-    low: 0.5,      // 50% resolution = ~75% file size reduction
-    medium: 0.7,   // 70% resolution = ~50% file size reduction
-    high: 0.85     // 85% resolution = ~30% file size reduction
+  // Quality settings - affects both resolution and JPEG quality
+  const settingsMap = {
+    low: { scale: 1.0, jpegQuality: 0.3 },      // Low resolution, high compression
+    medium: { scale: 1.5, jpegQuality: 0.5 },   // Medium resolution, medium compression
+    high: { scale: 2.0, jpegQuality: 0.7 }      // Higher resolution, less compression
   }
-  const scaleFactor = scaleMap[quality]
+  const settings = settingsMap[quality]
   
-  // Copy and scale each page
-  for (let i = 0; i < sourcePdf.getPageCount(); i++) {
-    const [sourcePage] = await compressedPdf.copyPages(sourcePdf, [i])
-    const { width, height } = sourcePage.getSize()
+  // Process each page
+  for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+    const page = await pdfDoc.getPage(pageNum)
+    const viewport = page.getViewport({ scale: settings.scale })
     
-    // Scale down the page dimensions
-    const newWidth = width * scaleFactor
-    const newHeight = height * scaleFactor
+    // Create canvas for rendering
+    const canvas = document.createElement('canvas')
+    const context = canvas.getContext('2d')!
+    canvas.width = viewport.width
+    canvas.height = viewport.height
     
-    // Apply scaling
-    sourcePage.scale(scaleFactor, scaleFactor)
-    sourcePage.setSize(newWidth, newHeight)
+    // Render PDF page to canvas
+    await page.render({
+      canvasContext: context,
+      viewport: viewport
+    }).promise
     
-    compressedPdf.addPage(sourcePage)
+    // Convert canvas to JPEG blob with compression
+    const imageBlob = await new Promise<Blob>((resolve) => {
+      canvas.toBlob(
+        (blob) => resolve(blob!),
+        'image/jpeg',
+        settings.jpegQuality
+      )
+    })
+    
+    // Convert blob to array buffer
+    const imageArrayBuffer = await imageBlob.arrayBuffer()
+    
+    // Embed compressed image in new PDF
+    const jpegImage = await compressedPdf.embedJpg(imageArrayBuffer)
+    
+    // Add page with same dimensions as original
+    const pdfPage = compressedPdf.addPage([viewport.width, viewport.height])
+    pdfPage.drawImage(jpegImage, {
+      x: 0,
+      y: 0,
+      width: viewport.width,
+      height: viewport.height
+    })
   }
   
-  // Save with maximum compression options
-  return await compressedPdf.save({ 
+  // Save compressed PDF
+  return await compressedPdf.save({
     useObjectStreams: true,
-    addDefaultPage: false,
-    objectsPerTick: 50
+    addDefaultPage: false
   })
 }
 

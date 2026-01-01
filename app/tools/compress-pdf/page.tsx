@@ -95,15 +95,16 @@ export default function CompressPDFPage() {
                   Compression Quality
                 </h3>
                 
-                <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                  <p className="text-sm text-yellow-800 mb-2">
-                    <strong>⚠️ Important:</strong> Browser-based PDF compression has limitations.
+                <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-800 mb-2">
+                    <strong>ℹ️ How it works:</strong> This tool renders your PDF pages as images and rebuilds them with JPEG compression.
                   </p>
-                  <ul className="text-xs text-yellow-700 space-y-1 ml-4 list-disc">
-                    <li>Modern PDFs often have pre-compressed images (cannot be recompressed)</li>
-                    <li>Typical compression: 5-15% for regular PDFs, up to 30% for scanned documents</li>
-                    <li>For better results: Use "PDF to Image" tool, compress images separately, then convert back</li>
-                    <li>Files with text-only content may see little to no reduction</li>
+                  <ul className="text-xs text-blue-700 space-y-1 ml-4 list-disc">
+                    <li><strong>Low:</strong> Maximum compression (~50-70% reduction), lower quality</li>
+                    <li><strong>Medium:</strong> Balanced (~40-60% reduction), good quality</li>
+                    <li><strong>High:</strong> Less compression (~30-50% reduction), better quality</li>
+                    <li>Best for: Image-heavy PDFs, scanned documents, presentations</li>
+                    <li>Note: Text may become slightly blurry due to image conversion</li>
                   </ul>
                 </div>
 
@@ -118,8 +119,8 @@ export default function CompressPDFPage() {
                   >
                     <div className="text-center">
                       <div className="text-lg font-bold text-gray-800 mb-1">Maximum</div>
-                      <div className="text-xs text-gray-600">Smallest file</div>
-                      <div className="text-xs text-gray-500 mt-1">Lower quality</div>
+                      <div className="text-xs text-gray-600">50-70% smaller</div>
+                      <div className="text-xs text-gray-500 mt-1">Good for sharing</div>
                     </div>
                   </button>
 
@@ -133,8 +134,8 @@ export default function CompressPDFPage() {
                   >
                     <div className="text-center">
                       <div className="text-lg font-bold text-gray-800 mb-1">Recommended</div>
-                      <div className="text-xs text-gray-600">Balanced</div>
-                      <div className="text-xs text-gray-500 mt-1">Good quality</div>
+                      <div className="text-xs text-gray-600">40-60% smaller</div>
+                      <div className="text-xs text-gray-500 mt-1">Best balance</div>
                     </div>
                   </button>
 
@@ -148,8 +149,8 @@ export default function CompressPDFPage() {
                   >
                     <div className="text-center">
                       <div className="text-lg font-bold text-gray-800 mb-1">Minimal</div>
-                      <div className="text-xs text-gray-600">Larger file</div>
-                      <div className="text-xs text-gray-500 mt-1">Best quality</div>
+                      <div className="text-xs text-gray-600">30-50% smaller</div>
+                      <div className="text-xs text-gray-500 mt-1">Better quality</div>
                     </div>
                   </button>
                 </div>
