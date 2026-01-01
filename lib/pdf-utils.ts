@@ -44,52 +44,28 @@ export async function compressPDF(pdfFile: File, quality: 'low' | 'medium' | 'hi
   // Create new PDF
   const compressedPdf = await PDFDocument.create()
   
-  // Quality settings for image compression
-  const qualityMap = {
-    low: 0.4,      // Maximum compression (smallest file)
-    medium: 0.6,   // Balanced
-    high: 0.8      // Less compression (better quality)
-  }
-  const imageQuality = qualityMap[quality]
-  
-  // Resolution scale factor
+  // Resolution scale factors - reduce resolution for compression
   const scaleMap = {
-    low: 0.7,      // 70% of original resolution
-    medium: 0.85,  // 85% of original resolution  
-    high: 1.0      // Keep original resolution
+    low: 0.5,      // 50% resolution = ~75% file size reduction
+    medium: 0.7,   // 70% resolution = ~50% file size reduction
+    high: 0.85     // 85% resolution = ~30% file size reduction
   }
   const scaleFactor = scaleMap[quality]
   
-  // Copy and compress each page
+  // Copy and scale each page
   for (let i = 0; i < sourcePdf.getPageCount(); i++) {
     const [sourcePage] = await compressedPdf.copyPages(sourcePdf, [i])
     const { width, height } = sourcePage.getSize()
     
-    // Scale down the page if needed
-    if (scaleFactor < 1.0) {
-      sourcePage.scale(scaleFactor, scaleFactor)
-    }
+    // Scale down the page dimensions
+    const newWidth = width * scaleFactor
+    const newHeight = height * scaleFactor
+    
+    // Apply scaling
+    sourcePage.scale(scaleFactor, scaleFactor)
+    sourcePage.setSize(newWidth, newHeight)
     
     compressedPdf.addPage(sourcePage)
-  }
-  
-  // Try to extract and compress embedded images
-  try {
-    const pages = compressedPdf.getPages()
-    
-    for (const page of pages) {
-      // Get the page's content stream
-      const { width, height } = page.getSize()
-      
-      // Scale content for compression
-      if (quality === 'low') {
-        page.scaleContent(0.95, 0.95)
-        page.setSize(width * 0.95, height * 0.95)
-      }
-    }
-  } catch (e) {
-    // Continue if image extraction fails
-    console.warn('Could not compress images:', e)
   }
   
   // Save with maximum compression options
