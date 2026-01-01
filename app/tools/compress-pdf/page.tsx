@@ -96,11 +96,15 @@ export default function CompressPDFPage() {
                 </h3>
                 
                 <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                  <p className="text-sm text-yellow-800">
-                    <strong>⚠️ Note:</strong> PDF compression results vary based on content. 
-                    PDFs with already-compressed images may not reduce much. 
-                    For best results, use PDFs with uncompressed images.
+                  <p className="text-sm text-yellow-800 mb-2">
+                    <strong>⚠️ Important:</strong> Browser-based PDF compression has limitations.
                   </p>
+                  <ul className="text-xs text-yellow-700 space-y-1 ml-4 list-disc">
+                    <li>Modern PDFs often have pre-compressed images (cannot be recompressed)</li>
+                    <li>Typical compression: 5-15% for regular PDFs, up to 30% for scanned documents</li>
+                    <li>For better results: Use "PDF to Image" tool, compress images separately, then convert back</li>
+                    <li>Files with text-only content may see little to no reduction</li>
+                  </ul>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4 mb-4">

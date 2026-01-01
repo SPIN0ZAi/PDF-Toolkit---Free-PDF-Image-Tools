@@ -126,10 +126,7 @@ export default function FileUpload({
           onChange={handleFileInput}
         />
         
-        <label
-          htmlFor="file-upload"
-          className="cursor-pointer flex flex-col items-center"
-        >
+        <div className="flex flex-col items-center">
           <Upload className={`w-16 h-16 mb-4 ${isDragging ? 'text-primary-500' : 'text-gray-400'}`} />
           
           <h3 className="text-xl font-semibold mb-2 text-gray-700">
@@ -142,6 +139,7 @@ export default function FileUpload({
           
           <button
             type="button"
+            onClick={() => document.getElementById('file-upload')?.click()}
             className="px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg"
           >
             Select Files
@@ -152,7 +150,7 @@ export default function FileUpload({
               You can select up to {maxFiles} files
             </p>
           )}
-        </label>
+        </div>
       </div>
 
       {/* Errors */}
