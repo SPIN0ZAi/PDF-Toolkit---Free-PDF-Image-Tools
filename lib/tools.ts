@@ -1,0 +1,134 @@
+// Tool types and configurations
+
+export interface Tool {
+  id: string
+  name: string
+  description: string
+  icon: string
+  category: 'pdf' | 'image' | 'conversion'
+  href: string
+  popular?: boolean
+  comingSoon?: boolean
+}
+
+export const tools: Tool[] = [
+  // PDF Tools
+  {
+    id: 'merge-pdf',
+    name: 'Merge PDF',
+    description: 'Combine multiple PDF files into one',
+    icon: 'Combine',
+    category: 'pdf',
+    href: '/tools/merge-pdf',
+    popular: true,
+  },
+  {
+    id: 'split-pdf',
+    name: 'Split PDF',
+    description: 'Extract pages from your PDF',
+    icon: 'Split',
+    category: 'pdf',
+    href: '/tools/split-pdf',
+    popular: true,
+  },
+  {
+    id: 'compress-pdf',
+    name: 'Compress PDF',
+    description: 'Reduce PDF file size',
+    icon: 'Minimize2',
+    category: 'pdf',
+    href: '/tools/compress-pdf',
+    popular: true,
+  },
+  {
+    id: 'pdf-to-image',
+    name: 'PDF to Image',
+    description: 'Convert PDF pages to JPG or PNG',
+    icon: 'FileImage',
+    category: 'conversion',
+    href: '/tools/pdf-to-image',
+    popular: true,
+  },
+  {
+    id: 'image-to-pdf',
+    name: 'Image to PDF',
+    description: 'Convert images to PDF document',
+    icon: 'FileText',
+    category: 'conversion',
+    href: '/tools/image-to-pdf',
+  },
+  {
+    id: 'rotate-pdf',
+    name: 'Rotate PDF',
+    description: 'Rotate PDF pages',
+    icon: 'RotateCw',
+    category: 'pdf',
+    href: '/tools/rotate-pdf',
+  },
+  {
+    id: 'delete-pages',
+    name: 'Delete Pages',
+    description: 'Remove pages from PDF',
+    icon: 'Trash2',
+    category: 'pdf',
+    href: '/tools/delete-pages',
+  },
+  {
+    id: 'protect-pdf',
+    name: 'Protect PDF',
+    description: 'Add password to PDF',
+    icon: 'Lock',
+    category: 'pdf',
+    href: '/tools/protect-pdf',
+  },
+  {
+    id: 'unlock-pdf',
+    name: 'Unlock PDF',
+    description: 'Remove PDF password',
+    icon: 'Unlock',
+    category: 'pdf',
+    href: '/tools/unlock-pdf',
+  },
+  {
+    id: 'watermark-pdf',
+    name: 'Add Watermark',
+    description: 'Add text or image watermark',
+    icon: 'Droplet',
+    category: 'pdf',
+    href: '/tools/watermark-pdf',
+  },
+  {
+    id: 'pdf-metadata',
+    name: 'Edit Metadata',
+    description: 'View and edit PDF properties',
+    icon: 'Info',
+    category: 'pdf',
+    href: '/tools/pdf-metadata',
+  },
+  
+  // Image/Icon Tools
+  {
+    id: 'image-to-ico',
+    name: 'Image to ICO',
+    description: 'Convert images to Windows icon format',
+    icon: 'Image',
+    category: 'image',
+    href: '/tools/image-to-ico',
+    popular: true,
+  },
+  {
+    id: 'ico-to-image',
+    name: 'ICO to Image',
+    description: 'Convert ICO files to PNG, JPG, etc.',
+    icon: 'ImageDown',
+    category: 'image',
+    href: '/tools/ico-to-image',
+    popular: true,
+  },
+]
+
+export const categories = {
+  pdf: { name: 'PDF Tools', color: 'bg-red-100 text-red-700' },
+  image: { name: 'Image Tools', color: 'bg-blue-100 text-blue-700' },
+  conversion: { name: 'Conversion', color: 'bg-green-100 text-green-700' },
+}
