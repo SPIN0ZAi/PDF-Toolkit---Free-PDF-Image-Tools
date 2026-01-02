@@ -6,25 +6,25 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white dark:bg-gray-800 shadow-sm border-b dark:border-gray-700">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary-600">
+            <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary-600 dark:text-primary-400">
               <FileText className="w-8 h-8" />
               <span>PDF Toolkit</span>
             </Link>
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="#features" className="text-gray-600 hover:text-primary-600 transition-colors">
+              <Link href="#features" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
                 Features
               </Link>
-              <Link href="#privacy" className="text-gray-600 hover:text-primary-600 transition-colors">
+              <Link href="#privacy" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
                 Privacy
               </Link>
               <a 
-                href="https://github.com" 
+                href="https://github.com/SPIN0ZAi/PDF-Toolkit---Free-PDF-Image-Tools" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-primary-600 transition-colors"
+                className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                 aria-label="GitHub"
               >
                 <Github className="w-5 h-5" />
@@ -35,25 +35,25 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-500 to-primary-600 text-white py-16">
+      <section className="bg-gradient-to-r from-primary-500 to-primary-600 dark:from-primary-700 dark:to-primary-800 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Free PDF & Image Tools
           </h1>
-          <p className="text-xl md:text-2xl text-primary-100 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-primary-100 dark:text-primary-200 mb-8 max-w-3xl mx-auto">
             Merge, split, compress, and convert PDFs. Transform images to ICO and back. 
             All processing happens in your browser - 100% private and free.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
-            <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2">
+            <div className="flex items-center gap-2 bg-white/20 dark:bg-black/20 rounded-full px-4 py-2">
               <Shield className="w-5 h-5" />
               <span>No Upload Required</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2">
+            <div className="flex items-center gap-2 bg-white/20 dark:bg-black/20 rounded-full px-4 py-2">
               <Zap className="w-5 h-5" />
               <span>Lightning Fast</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2">
+            <div className="flex items-center gap-2 bg-white/20 dark:bg-black/20 rounded-full px-4 py-2">
               <FileText className="w-5 h-5" />
               <span>100% Free</span>
             </div>
@@ -63,16 +63,16 @@ export default function HomePage() {
 
       {/* Tools Grid */}
       <main className="flex-1 container mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100">
           Choose Your Tool
         </h2>
         <ToolsGrid />
       </main>
 
       {/* Features Section */}
-      <section id="features" className="bg-white py-16">
+      <section id="features" className="bg-white dark:bg-gray-800 py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100">
             Why Choose PDF Toolkit?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">

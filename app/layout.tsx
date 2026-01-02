@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import ClientLayout from '@/components/ClientLayout'
 
 export const metadata: Metadata = {
   title: 'PDF Toolkit - Free PDF & Image Tools',
@@ -28,9 +29,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-        {children}
+    <html lang="en" className="scroll-smooth">
+      <body className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   )
