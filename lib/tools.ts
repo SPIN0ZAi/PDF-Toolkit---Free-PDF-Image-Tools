@@ -102,6 +102,33 @@ export const tools: Tool[] = [
     href: '/tools/ico-to-image',
     popular: true,
   },
+  {
+    id: 'compress-image',
+    name: 'Compress Image',
+    description: 'Reduce image file size with quality control',
+    icon: 'Minimize2',
+    category: 'image',
+    href: '/tools/compress-image',
+    popular: true,
+  },
+  {
+    id: 'resize-image',
+    name: 'Resize Image',
+    description: 'Resize images with custom or preset dimensions',
+    icon: 'Maximize2',
+    category: 'image',
+    href: '/tools/resize-image',
+    popular: true,
+  },
+  {
+    id: 'convert-image',
+    name: 'Convert Image',
+    description: 'Convert between PNG, JPG, WebP formats',
+    icon: 'RefreshCw',
+    category: 'image',
+    href: '/tools/convert-image',
+    popular: true,
+  },
 ]
 
 export const categories = {

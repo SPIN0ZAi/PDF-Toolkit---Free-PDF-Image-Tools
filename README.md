@@ -8,22 +8,68 @@ A completely **free**, **privacy-first** web application for PDF manipulation an
 
 ## 🎯 Features
 
-### PDF Tools
-- ✅ **Merge PDF** - Combine multiple PDF files into one
-- ✅ **Split PDF** - Extract specific pages or page ranges
-- ✅ **Compress PDF** - Optimize PDF structure (note: limited compression for already-compressed PDFs)
+### 📄 PDF Tools
+- ✅ **Merge PDF** - Combine multiple PDF files into one with drag-to-reorder
+- ✅ **Split PDF** - Extract specific pages or page ranges as separate files
+- ✅ **Compress PDF** - Real compression using canvas rendering (50-70% reduction)
 - ✅ **Rotate PDF** - Rotate pages 90°, 180°, or 270°
-- ✅ **Delete Pages** - Remove unwanted pages
-- ✅ **Protect PDF** - Add password protection
-- ✅ **Unlock PDF** - Remove password (with permission)
-- ✅ **Add Watermark** - Text or image watermarks
-- ✅ **Edit Metadata** - Update PDF properties
+- ✅ **Delete Pages** - Remove unwanted pages with range support (e.g., "1,3,5-7")
+- ✅ **Edit PDF** - Add text annotations and freehand drawing to PDFs
+- ✅ **PDF to Image** - Convert PDF pages to JPG/PNG with quality options
 
-### Conversion Tools
-- ✅ **PDF to Image** - Convert PDF pages to JPG/PNG
-- ✅ **Image to PDF** - Create PDF from images
+### 🖼️ Image Tools
+- ✅ **Image to PDF** - Create PDF from multiple images (up to 50)
 - ✅ **Image to ICO** - Convert images to Windows icon format (multi-resolution)
 - ✅ **ICO to Image** - Extract all sizes from ICO files
+
+### 🎨 UI Features
+- ✅ **Dark Mode** - Theme toggle with localStorage persistence
+- ✅ **Drag & Drop** - Intuitive file upload and reordering
+- ✅ **Real-time Preview** - See changes before downloading
+- ✅ **Batch Processing** - Handle multiple files at once
+
+---
+
+## 🚧 Coming Soon
+
+### 📄 Advanced PDF Features
+- 🔜 **PDF to Text** - Extract text from PDFs with OCR support (Tesseract.js)
+- 🔜 **Page Reorder** - Drag-and-drop interface to rearrange pages
+- 🔜 **Add Page Numbers** - Auto-number pages with custom formatting
+- 🔜 **Form Filler** - Fill out PDF forms in the browser
+- 🔜 **Enhanced Annotations** - Comments, highlights, and shapes
+
+### 🖼️ Enhanced Image Tools
+- 🔜 **Batch Image Converter** - Convert multiple images (PNG, JPG, WebP, AVIF)
+- 🔜 **Image Compressor** - Reduce file sizes with quality control
+- 🔜 **Image Resizer** - Preset and custom dimensions
+- 🔜 **Image Cropper** - Crop with aspect ratio presets
+- 🔜 **Background Remover** - ML-powered background removal
+- 🔜 **Image Editor** - Filters, brightness, contrast, rotate, flip
+
+### 📊 Document Converters
+- 🔜 **Markdown to PDF** - Convert .md files with formatting
+- 🔜 **HTML to PDF** - Save web content as PDF
+- 🔜 **Text to PDF** - Create formatted PDFs from plain text
+
+### ⚡ Power Features
+- 🔜 **Batch Processing Queue** - Chain multiple operations
+- 🔜 **Digital Signatures** - Add signatures using Web Crypto API
+- 🔜 **QR Code Generator** - Create and embed QR codes
+- 🔜 **Keyboard Shortcuts** - Power-user navigation
+- 🔜 **File History** - Track recently processed files (localStorage)
+
+### 🔧 Technical Enhancements
+- 🔜 **PWA Support** - Install as desktop/mobile app with offline mode
+- 🔜 **Web Workers** - Background processing for large files
+- 🔜 **Streaming Processing** - Handle very large files efficiently
+
+### 🔒 Privacy Features
+- 🔜 **Local Encryption** - Encrypt files with password before processing
+- 🔜 **Secure Delete** - Overwrite memory after processing
+- 🔜 **Redaction Tool** - Permanently remove sensitive information
+
+**Note:** All features maintain our privacy-first approach - no uploads, no tracking, 100% client-side processing.
 
 ---
 
